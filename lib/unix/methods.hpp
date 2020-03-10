@@ -1,3 +1,10 @@
+#if defined(__GNUC__) && __GNUC__ >= 8
+#define DISABLE_WCAST_FUNCTION_TYPE _Pragma("GCC diagnostic push") _Pragma("GCC diagnostic ignored \"-Wcast-function-type\"")
+#define DISABLE_WCAST_FUNCTION_TYPE_END _Pragma("GCC diagnostic pop")
+#else
+#define DISABLE_WCAST_FUNCTION_TYPE
+#define DISABLE_WCAST_FUNCTION_TYPE_END
+#endif
 #include <cups/cups.h>
 #include <cups/ppd.h>
 #include <cups/ipp.h>
@@ -20,22 +27,6 @@ namespace methods{
 	 */
 	cups_dest_t* getPrinter(const char*);
 
-	/**
-	 * Copies a destination from src to dest
-	 * @param src cups_dest_t* from which to copy informations
-	 * @param dest cups_dest_t* in which to copy informations
-	 * @return copy of src
-	 */
-	bool copyDest(cups_dest_t*, cups_dest_t*);
-
-	/**
-	 * Copies options from src to dest
-	 * @param src cups_option_t* from which to copy informations
-	 * @param num_options number of options to copy starting from the first
-	 * @param dest cups_option_t* in which to copy informations
-	 * @return copy of src 
-	 */
-	bool copyOptions(cups_option_t*, int, cups_option_t*);
 
 	/**
 	 * Return job status from job status string

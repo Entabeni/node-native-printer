@@ -1,3 +1,10 @@
+#if defined(__GNUC__) && __GNUC__ >= 8
+#define DISABLE_WCAST_FUNCTION_TYPE _Pragma("GCC diagnostic push") _Pragma("GCC diagnostic ignored \"-Wcast-function-type\"")
+#define DISABLE_WCAST_FUNCTION_TYPE_END _Pragma("GCC diagnostic pop")
+#else
+#define DISABLE_WCAST_FUNCTION_TYPE
+#define DISABLE_WCAST_FUNCTION_TYPE_END
+#endif
 #include "methods.hpp"
 
 using namespace std;
@@ -24,7 +31,6 @@ namespace methods{
 
 		cups_dest_t* result = new cups_dest_t;
 		if(temp != NULL){
-			if(! copyDest(temp, result))
 				return NULL;
 		}
 		else{
@@ -37,48 +43,8 @@ namespace methods{
 		return result;
 	}
 
-	bool copyDest(cups_dest_t* source, cups_dest_t* dest){
-		if(source->instance != NULL){
-			dest->instance = strdup(source->instance);
+	
 
-			if(dest->instance == NULL)
-				return false;
-		}
-
-		if(source->name != NULL){
-			dest->name = strdup(source->name);
-
-			if(dest->name == NULL)
-				return false;
-		}
-		
-		dest->is_default = source->is_default;
-		dest->num_options = source->num_options;
-
-		dest->options = new cups_option_t[source->num_options];
-		
-		if(! copyOptions(source->options, source->num_options, dest->options)){
-			cerr << "Errore durante la copia delle opzioni\n";
-			return 1;
-		}
-
-		return true;
-	}
-
-	bool copyOptions(cups_option_t* source, int num, cups_option_t* dest){
-
-		for(int i = 0; i < num; i++){
-			dest[i].name = strdup(source[i].name);
-			dest[i].value = strdup(source[i].value);
-			
-			if(dest[i].name == NULL)
-				return false;
-			if(dest[i].value == NULL)
-				return false;
-		}
-		
-		return true;
-	}
 
 	const char* getJobStatusString(int status){
 		switch(status){
