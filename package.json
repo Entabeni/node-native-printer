@@ -1,6 +1,6 @@
 {
   "name": "node-native-printer",
-  "version": "1.0.0-beta.5",
+  "version": "2.0.0",
   "description": "Node module to print from nodejs apps",
   "main": "index.js",
   "directories": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MatteoMeil/node-native-printer.git"
+    "url": "git+https://github.com/Entabeni/node-native-printer.git"
   },
   "keywords": [
     "node",
@@ -21,13 +21,13 @@
     "printer",
     "print"
   ],
-  "author": "MatteoMeil",
+  "author": "Entabeni",
   "license": "MIT",
   "gypfile": true,
   "bugs": {
-    "url": "https://github.com/MatteoMeil/node-native-print/issues"
+    "url": "https://github.com/Entabeni/node-native-print/issues"
   },
-  "homepage": "https://github.com/MatteoMeil/node-native-print#readme",
+  "homepage": "https://github.com/Entabeni/node-native-print#readme",
   "dependencies": {
     "dotenv": "^5.0.1",
     "inquirer": "^6.3.1"
