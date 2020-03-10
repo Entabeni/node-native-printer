@@ -12,11 +12,6 @@ using namespace v8;
 //Method declarations
 namespace API
 {
-/**
-	 * List installed printers
-	 * @return array of printers 
-	 */
-CALLBACK(listPrinters);
 
 /**
 	 * Returns printer infos with active jobs
@@ -24,18 +19,6 @@ CALLBACK(listPrinters);
 	 * @return object containing infos
 	 */
 CALLBACK(printerInfo);
-
-/**
-	 * List CUPS options and PPD options
-	 * @param printer printer name
-	 * @return object containing options
-	 */
-CALLBACK(printerOptions);
-
-/**
-	 * Returns default printer name
-	 */
-CALLBACK(defaultPrinterName);
 
 /**
 	 * Prints file or a plain text passed directly to this method.
@@ -49,10 +32,7 @@ using namespace API;
 
 void init(Local<Object> exports)
 {
-	NODE_SET_METHOD(exports, "listPrinters", listPrinters);
 	NODE_SET_METHOD(exports, "printerInfo", printerInfo);
-	NODE_SET_METHOD(exports, "printerOptions", printerOptions);
-	NODE_SET_METHOD(exports, "defaultPrinterName", defaultPrinterName);
 	NODE_SET_METHOD(exports, "print", print);
 }
 
